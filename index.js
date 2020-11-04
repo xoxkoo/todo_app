@@ -12,7 +12,9 @@ const db = new Db('database.db')
 db.loadDatabase()
 
 // creating port
-app.listen(port, () => {})
+app.listen(port, () => {
+  console.log('we goin')
+})
 
 // serving static files
 app.use(express.static('public'))
