@@ -1,0 +1,74 @@
+$border_radius: 20px
+$heigh_padding: 1em
+  
+body 
+  background: #F7EDE2
+  margin: 2em
+
+li 
+  list-style: none
+  display: flex
+  justify-content: space-between
+  border-radius: $border_radius
+  width: 500px
+  padding: $heigh_padding 1.5em 
+  background: #F5CAC3
+  margin: 1em
+
+ul
+  width: max-content  
+  margin: 1em auto
+
+a
+  color: #84A59D
+  &:hover,
+  &:focus
+    color: lighten(#84A59D, 10)
+    text-decoration: none
+    
+
+p 
+  margin-bottom: 0
+
+.form-inline
+  width: max-content
+  margin: 2em auto
+  display: flex
+  justify-content: space-between
+
+.form-control
+  margin-right: 1em
+  border-radius: $border_radius
+  border: 0
+  padding: $heigh_padding 3em
+
+  &:focus
+    outline: none
+    box-shadow: none
+    border: inherit
+
+.btn 
+  background: #84A59D
+  border: 0
+  border-radius: $border_radius
+  padding: $heigh_padding 2.5em
+
+  &:hover,
+  &:focus 
+    background: lighten(#84A59D,10)
+    box-shadow: none 
+    outline: none 
+
+  &:active
+    box-shadow: none !important
+    outline: none !important
+    background: darken(#84A59D,20) !important
+  
+.animation 
+  animation: .5s fadeOut
+
+@keyframes fadeOut 
+  from
+    opacity: 1
+  to 
+    opacity: 0 
