@@ -14,6 +14,7 @@ export default class Todo {
 
     if ( this.createNewNode() ) {
       this.input.parentElement.parentElement.reset()
+      this.sendData()
     } 
 
   }
@@ -62,8 +63,33 @@ export default class Todo {
 
   }  
 
-  getItems() {
-    this.list.innerHTML = localStorage.getItem('elements')
+  async getItems() {
+    const response = await( await fetch('/app')).json()
+    // this.list.innerHTML = localStorage.getItem('elements')
+    this.list.innerHTML = await this.getData()  
   }
 
+  /**
+  * get data and create elements
+  */
+  async getData() {
+    const response = await( await fetch('/app')).json()
+
+    return response
+  }
+
+  //TODO - adding to database
+  sendData() {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: this.list.innerHTML.trim()
+    }
+    
+    //sending stuff
+    fetch('/app', options)
+  
+  }
 }

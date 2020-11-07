@@ -28,7 +28,9 @@ list.addEventListener('click', (e) => {
 
 })
 
-todo.saveItems()
+// document.onbeforeunload(() => {
+  // })
+// todo.sendData()
 
 todo.getItems()
 
