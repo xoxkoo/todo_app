@@ -96,7 +96,12 @@ export default class Todo {
   
   }
 
-  removeElement(id) {
+  removeElement(element, id) {
+    
+    setTimeout(() => {
+      element.remove()
+    }, 500)
+
     const data = {
       id: this.id
     }
@@ -111,5 +116,13 @@ export default class Todo {
     
     //sending stuff
     fetch('/delete', options)
+  }
+
+  //help functions
+  addClass(element, className, duration) {
+    element.classList.add(className)
+    setTimeout(() => {
+      element.classList.remove(className)
+    }, duration)
   }
 }
