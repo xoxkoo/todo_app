@@ -8,7 +8,7 @@ $heigh_padding: 1.1em
 $bg_light: #fff
 $bg_main: #E5E7EB
 $hg_main: #7B45ED
-$hg_light: #BCCCEC
+$hg_light: transparentize(#000, .5)
 $hg_dark: #8E9AAF
   
 body 
@@ -29,7 +29,6 @@ li
   margin: 1.25em 0
   padding: $heigh_padding 1em $heigh_padding 1.5em 
   background: $bg_light
-  // box-shadow: 0 3px 0 0 rgba(0, 0, 0, .2)
   border-radius: $border_radius
   
 
@@ -39,7 +38,9 @@ ul
   overflow-y: scroll
   margin: 1em auto
   padding: 0
-  
+  -ms-overflow-style: none
+  scrollbar-width: none
+
   &::-webkit-scrollbar
     display: none
   
@@ -48,8 +49,6 @@ a
   color: $hg_light
   padding:  0 .5em .15em
   transition: .3s
-  -ms-overflow-style: none
-  scrollbar-width: none
   
   &:hover,
   &:focus
@@ -75,20 +74,48 @@ p
   z-index: 10
 
 .form-control
-  font-size: 1.1rem
-  font-weight: 600
-  border-radius: $border_radius
-  padding: $heigh_padding 2em
-  transition: .3s
-  background: $bg_light
-  // border: 5px solid transparentize($bg_main, .5)
+  max-width: 60%
   border: none
 
   &:focus
     box-shadow: none
 
 .form-group
+  color: #000
+  background: $bg_light
+  border-radius: $border_radius
+
+  display: flex
+  justify-content: space-between
+  
   width: 100%
+  padding: .4em 1em
+  transition: .3s
+
+.list
+  padding: .75em 1em
+  border-radius: 15px
+  background: transparentize( $bg_main, .5)
+
+  width: 30%
+  display: flex
+  justify-content: space-around
+  align-items: center
+  transition: .3s
+
+  &:hover,
+  &:focus 
+    cursor: pointer 
+    background: lighten($hg_light, 60%)
+
+.rectangle 
+  width: 10px
+  height: 10px
+  border: 2px solid $hg_light
+  border-radius: 2px
+
+.arrow
+  stroke: #000 !important
 
 .btn 
   background: $hg_main
@@ -123,7 +150,7 @@ p
   0%
     background: $bg_light
   50%
-    background: $hg_light
+    background: $hg_main
   100%
     background: $bg_light
 
