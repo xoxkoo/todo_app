@@ -22,7 +22,8 @@ db.loadDatabase()
 //serving static files
 app.use(express.static('public'))
 
-app.get('/app', (req, res) => {
+// get data from db
+app.get('/get', (req, res) => {
   //select everything from database
   db.find({}, (err, data) => {
     // if something go wrong
@@ -36,7 +37,8 @@ app.get('/app', (req, res) => {
   })
 })
 
-app.post('/app', (req, res) => {
+// add stuff to db
+app.post('/add', (req, res) => {
   const data = req.body
 
   //adding current time
@@ -46,6 +48,7 @@ app.post('/app', (req, res) => {
   db.insert(data)
 })
 
+// deleting stuff from db
 app.post('/delete', (req, res) => {
   const id = req.body.id
 

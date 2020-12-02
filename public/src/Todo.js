@@ -65,7 +65,7 @@ export default class Todo {
 
   async getItems() {
     // this.list.innerHTML = localStorage.getItem('elements')
-    const response = await( await fetch('/app')).json()
+    const response = await( await fetch('/get')).json()
     
 
     for (const item of response) {
@@ -92,12 +92,12 @@ export default class Todo {
     
 
     //sending stuff
-    fetch('/app', options)
+    fetch('/add', options)
   
   }
 
   removeElement(element, id) {
-    
+
     setTimeout(() => {
       element.remove()
     }, 500)
