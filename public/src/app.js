@@ -17,13 +17,18 @@ form.addEventListener('submit', (e) => {
 
 list.addEventListener('click', (e) => {
   
-  if (e.target.localName === 'a') {
+  const el = e.target
+
+  if (el.localName === 'a') {
     
-    e.target.parentElement.classList.add('animation')
+    el.parentElement.classList.add('animation')
     setTimeout(() => {
-      e.target.parentElement.remove()
+      el.parentElement.remove()
     }, 500)
+
+    const id = el.parentElement.dataset.index
     
+    todo.removeElement(id)
   }
 
 })

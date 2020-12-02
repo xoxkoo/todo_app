@@ -13,6 +13,7 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "lodash": "^4.17.20",
     "nedb": "^1.8.0"

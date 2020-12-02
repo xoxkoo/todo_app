@@ -64,32 +64,52 @@ export default class Todo {
   }  
 
   async getItems() {
-    const response = await( await fetch('/app')).json()
     // this.list.innerHTML = localStorage.getItem('elements')
-    this.list.innerHTML = await this.getData()  
-  }
-
-  /**
-  * get data and create elements
-  */
-  async getData() {
     const response = await( await fetch('/app')).json()
+    
 
-    return response
+    for (const item of response) {
+      this.id = item.id
+      this.text = item.body
+      
+      this.list.innerHTML += this.createNewHtml()
+    }
   }
 
   //TODO - adding to database
   sendData() {
+    const data = {
+      id: this.id,
+      body: this.text
+    }
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: this.list.innerHTML.trim()
+      body: JSON.stringify(data)
     }
     
+
     //sending stuff
     fetch('/app', options)
   
+  }
+
+  removeElement(id) {
+    const data = {
+      id: this.id
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    
+    //sending stuff
+    fetch('/delete', options)
   }
 }

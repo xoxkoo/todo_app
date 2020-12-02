@@ -8,11 +8,11 @@ const app  = express()
 const port = process.env.PORT || 3000
 
 // middleware
-// app.use(express.json())
+app.use(express.json())
 app.use(express.urlencoded())
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Listening at http://localhost:${port}`)
 })
 
 // creating database @param is name of db file
@@ -39,7 +39,20 @@ app.get('/app', (req, res) => {
 app.post('/app', (req, res) => {
   const data = req.body
 
-  console.log(data)
+  //adding current time
+  data.timestamp = Date.now()
+
+  //adding data to database
+  db.insert(data)
+})
+
+app.post('/delete', (req, res) => {
+  const id = req.body.id
+
+  //adding data to database
+  db.remove({id: id}, {}, () => {
+    console.log(id + ' deleted')
+  })
 })
 
 

@@ -1,69 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap')
+
 $border_radius: 20px
-$heigh_padding: 1em
+$border-radius_big: 40px
+$heigh_padding: 1.1em
+
+$bg_light: #F5F9FC
+$bg_main: #E5E7EB
+$hg_main: #7B45ED
+$hg_light: #BCCCEC
+$hg_dark: #8E9AAF
   
 body 
-  background: #F7EDE2
-  margin: 2em
+  font-family: 'Inter', sans-serif
+  background: $bg_main
+  height: 100vh
+
+.app 
+  width: 80vw
+  max-width: 450px
+  margin: 0 auto
 
 li 
   list-style: none
   display: flex
   justify-content: space-between
+  align-items: center
+  
+  margin: 1.25em 0
+  padding: $heigh_padding 1em $heigh_padding 1.5em 
+  background: #fff
+  // box-shadow: 0 3px 0 0 rgba(0, 0, 0, .2)
   border-radius: $border_radius
-  width: 500px
-  padding: $heigh_padding 1.5em 
-  background: #F5CAC3
-  margin: 1em
+  
 
 ul
-  width: max-content  
+  width: 100%
+  height: 70vh
+  // overflow: scroll
   margin: 1em auto
+  padding: 0
 
 a
-  color: #84A59D
+  font-family: 'Nunito', sans-serif
+  color: $hg_light
+  padding:  0 .5em .15em
+  transition: .3s
+  
   &:hover,
   &:focus
-    color: lighten(#84A59D, 10)
+    color: $hg_main
     text-decoration: none
+    background: transparentize( $bg_main, .5)
+    border-radius: 7px
     
-
 p 
   margin-bottom: 0
 
 .form-inline
-  width: max-content
-  margin: 2em auto
-  display: flex
-  justify-content: space-between
+  width: 100vw
+  max-width: 500px
+  margin: auto
+  padding: 16px
+  
+  position: fixed
+  bottom: 0
+  left: 50%
+  transform: translateX(-50%)
+  
+  z-index: 10
 
 .form-control
-  margin-right: 1em
+  font-size: 1.1rem
+  font-weight: 600
   border-radius: $border_radius
-  border: 0
-  padding: $heigh_padding 3em
+  padding: $heigh_padding 2em
+  transition: .3s
+  background: #fff
+  // border: 5px solid transparentize($bg_main, .5)
+  border: none
 
   &:focus
-    outline: none
     box-shadow: none
-    border: inherit
+
+.form-group
+  width: 100%
 
 .btn 
-  background: #84A59D
+  background: $hg_main
   border: 0
   border-radius: $border_radius
   padding: $heigh_padding 2.5em
+  height: min-content
 
   &:hover,
   &:focus 
-    background: lighten(#84A59D,10)
+    background: lighten($hg_main,10)
     box-shadow: none 
     outline: none 
 
   &:active
     box-shadow: none !important
     outline: none !important
-    background: darken(#84A59D,20) !important
+    background: darken($hg_main,20) !important
   
+@media (min-width: 576px) 
+  .form-control,
+  .form-inline
+    width: 100% !important
+
 .animation 
   animation: .5s fadeOut
 
