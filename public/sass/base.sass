@@ -10,6 +10,10 @@ $bg_main: #E5E7EB
 $hg_main: #7B45ED
 $hg_light: transparentize(#000, .5)
 $hg_dark: #8E9AAF
+
+$hg_work: #81b29a
+$hg_personal: #f2cc8f
+$hg_important:  #e07a5f
   
 body 
   font-family: 'Inter', sans-serif
@@ -28,13 +32,15 @@ li
   
   margin: 1.25em 0
   padding: $heigh_padding 1em $heigh_padding 1.5em 
-  background: $bg_light
+  background: transparentize($bg_light, .1)
   border-radius: $border_radius
   
 
 ul
+  // background: linear-gradient(rgba(95,95,140,1) 0%, $bg_main 100%)
+
   width: 100%
-  height: 70vh
+  height: 60vh
   overflow-y: scroll
   margin: 1em auto
   padding: 0
@@ -92,12 +98,13 @@ p
   padding: .4em 1em
   transition: .3s
 
-.list
+.list-form
+  font-size: .95rem
   padding: .75em 1em
   border-radius: 15px
   background: transparentize( $bg_main, .5)
 
-  width: 30%
+  width: 35%
   display: flex
   justify-content: space-around
   align-items: center
@@ -108,11 +115,53 @@ p
     cursor: pointer 
     background: lighten($hg_light, 60%)
 
+.list
+  background: $bg_light
+  border-radius: $border_radius
+
+  position: absolute
+  right: 2.5em
+  top: -125px
+  // display: none
+
+.list-item
+  font-size: .95rem
+  display: flex
+  align-items: center
+  padding: .25em 1em 
+
+  &:hover
+    background: transparentize( $bg_main, .5)
+    cursor: pointer
+
+  &:first-of-type
+    padding-top: .5em 
+    border-top-left-radius: 20px
+    border-top-right-radius: 20px
+
+  &:last-of-type
+    padding-bottom: .5em
+    border-bottom-left-radius: 20px
+    border-bottom-right-radius: 20px
+
+
+.list-name
+  margin-left: 2em
+
 .rectangle 
   width: 10px
   height: 10px
   border: 2px solid $hg_light
-  border-radius: 2px
+  border-radius: 3px
+
+.rectangle-work
+  border-color: $hg_work
+
+.rectangle-personal
+  border-color: $hg_personal
+
+.rectangle-important
+  border-color: $hg_important
 
 .arrow
   stroke: #000 !important
