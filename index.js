@@ -53,8 +53,8 @@ app.post('/delete', (req, res) => {
   const id = req.body.id
 
   //adding data to database
-  db.remove({id: id}, {}, () => {
-    console.log(id + ' deleted')
+  db.remove({ _id: id }, {}, (err, numRemoved) => {
+    console.log(err, numRemoved)
   })
 })
 

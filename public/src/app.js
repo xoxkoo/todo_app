@@ -4,45 +4,51 @@ import Todo from './Todo.js'
 
 const form         = document.querySelector('form'),
       input        = document.querySelector('input[name=todo]'),
-      list         = document.querySelector('ul'),
+      tasksList    = document.querySelector('ul'),
       categoryList = document.querySelector('.list'),
       rectangle    = document.querySelector('.rectangle')
 
-const todo = new Todo(list, input)
+const app = new Todo(tasksList, input)
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  todo.addNew()
-  todo.addClass(document.querySelector('.form-group'), 'blink-an', 500)
-  todo.addClass(input, 'blink-an', 500)
+  app.addNew()
+  console.log()
+  app.addClass(document.querySelector('.form-group'), `blink-${app.category}-an`, 500)
 
 })
 
-list.addEventListener('click', (e) => {
+tasksList.addEventListener('click', (e) => {
   
   const el = e.target
 
   if (el.localName === 'a') {
+    e.preventDefault()
     
     el.parentElement.classList.add('fade-out-an')
 
-    const id = el.parentElement.dataset.index
+    const id = +el.parentElement.dataset.index
     
-    todo.removeElement(el.parentElement, id)
+    app.removeElement(el.parentElement, id)
   }
 
 })
 
-todo.getItems()
+app.getItems()
 
-document.querySelector('body').addEventListener('click', (e) => {
-  if (e.target.classList.contains('list-form-item') && categoryList.style.display != 'block') {
-    categoryList.style.display = 'block'
-  }
-  else {
-    categoryList.style.display = 'none'
-  }
+// document.addEventListener('click', (e) => {
+//   // console.log(e.target)
+//   if (e.target.classList.contains('list-form-item') && categoryList.style.display != 'block') {
+//     categoryList.style.opacity = 1
+//   }
+//   else {
+//     categoryList.style.opacity = 0
+//   }
+// })
+
+document.querySelector('.list-form').addEventListener('click', (e) => {
+  categoryList.style.opacity = 1
 })
 
 // adding tasks category
@@ -53,12 +59,14 @@ document.querySelectorAll('.list-item').forEach(item => {
 
     document.querySelector('.list-form-item-name').textContent = category
 
-    category = category.trim() 
+    // remove spaces + lower case
+    category = category.split('').filter(e => e.trim().length).join('').toLowerCase()
 
     rectangle.classList = ''
 
-    rectangle.classList = 'rectangle list-form-item rectangle-' + category.toLowerCase()
+    rectangle.classList = 'rectangle list-form-item rectangle-' + category
 
+    input.focus()
   })
 
 })

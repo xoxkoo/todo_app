@@ -1,5 +1,7 @@
-{"id":2,"body":"asdasdasd","timestamp":1606901423485,"_id":"5Kkv7o2NYYsr09as"}
-{"id":4,"body":"come on","timestamp":1606985165579,"_id":"DmPLquT3TyKIcJcr"}
-{"id":3,"body":"hello there","timestamp":1606901436449,"_id":"bM43tWyywdsoDhev"}
-{"id":4,"body":"come onnnn","timestamp":1606986562305,"_id":"eyZAqb60YUt5o0MY"}
-{"id":5,"body":"lets go","timestamp":1606986743617,"_id":"cknDGF0BAdDkHYOv"}
+{"_id":1,"body":"pls","category":"important","timestamp":1606999353130}
+{"_id":3,"body":"asdasdsadas","category":"work","timestamp":1607002073125}
+{"_id":4,"body":"hello","category":"important","timestamp":1607005975462}
+{"$$deleted":true,"_id":3}
+{"_id":5,"body":"come here please","category":"important","timestamp":1607006066817}
+{"_id":6,"body":"very well","category":"work","timestamp":1607006073289}
+{"$$deleted":true,"_id":1}

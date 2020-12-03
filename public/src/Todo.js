@@ -6,11 +6,14 @@ export default class Todo {
 		this.list = list
     this.input = input
     
+    this.categoryElement = this.input.nextElementSibling
+    this.category = ''
     this.text = ''
     this.id = ''
   }
 
   addNew() {
+    this.getCategory()
 
     if ( this.createNewNode() ) {
       this.input.parentElement.parentElement.reset()
@@ -22,6 +25,7 @@ export default class Todo {
   createNewHtml() {
     return `
       <li data-index="${this.id}">
+        <div class="rectangle rectangle-${this.category}"></div>
         <p>${this.text}</p> 
         <a href="#">x</a>
       </li>
@@ -41,12 +45,22 @@ export default class Todo {
 
   getLastIndex() {
     const lastEl = document.querySelector('li:last-child')
+    console.log(lastEl)
     
     return (lastEl) ? +lastEl.dataset.index : 0
   }
 
   getNewIndex() {
     return this.getLastIndex() + 1
+  }
+
+  getCategory() {
+    let category = this.categoryElement.querySelector('.list-form-item-name').textContent
+
+    // remove spaces + lower case
+    category = category.split('').filter(e => e.trim().length).join('').toLowerCase()
+
+    this.category = category
   }
 
   validate() {
@@ -69,9 +83,10 @@ export default class Todo {
     
 
     for (const item of response) {
-      this.id = item.id
+      this.id = item._id
       this.text = item.body
-      
+      this.category = item.category
+
       this.list.innerHTML += this.createNewHtml()
     }
   }
@@ -79,8 +94,9 @@ export default class Todo {
   //TODO - adding to database
   sendData() {
     const data = {
-      id: this.id,
-      body: this.text
+      _id: this.id,
+      body: this.text,
+      category: this.category
     }
     const options = {
       method: 'POST',
@@ -90,7 +106,6 @@ export default class Todo {
       body: JSON.stringify(data)
     }
     
-
     //sending stuff
     fetch('/add', options)
   
@@ -103,7 +118,7 @@ export default class Todo {
     }, 500)
 
     const data = {
-      id: this.id
+      id: id
     }
 
     const options = {
@@ -125,4 +140,22 @@ export default class Todo {
       element.classList.remove(className)
     }, duration)
   }
+
+  hideOnClickOutside(element) {
+    const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length )
+
+    const outsideClickListener = event => {
+        if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
+          element.style.display = 'none'
+          removeClickListener()
+        }
+    }
+
+    const removeClickListener = () => {
+        document.removeEventListener('click', outsideClickListener)
+    }
+
+    document.addEventListener('click', outsideClickListener)
+}
+
 }

@@ -8,12 +8,9 @@ $heigh_padding: 1.1em
 $bg_light: #fff
 $bg_main: #E5E7EB
 $hg_main: #7B45ED
-$hg_light: transparentize(#000, .5)
-$hg_dark: #8E9AAF
+$hg_light: #8d99ae
 
-$hg_work: #81b29a
-$hg_personal: #f2cc8f
-$hg_important:  #e07a5f
+$categories: ("work": #81b29a, "personal": #f2cc8f, "important": #e07a5f, "nolist": #8d99ae)
   
 body 
   font-family: 'Inter', sans-serif
@@ -25,16 +22,23 @@ body
   margin: 0 auto
 
 li 
-  list-style: none
   display: flex
-  justify-content: space-between
   align-items: center
+  
+  position: relative
+  list-style: none
   
   margin: 1.25em 0
   padding: $heigh_padding 1em $heigh_padding 1.5em 
   background: transparentize($bg_light, .1)
   border-radius: $border_radius
   
+  & > p
+    margin-left: 1em
+
+@each $category, $color in $categories 
+  .#{$category}
+    background: $color
 
 ul
   // background: linear-gradient(rgba(95,95,140,1) 0%, $bg_main 100%)
@@ -53,6 +57,10 @@ ul
 a
   font-family: 'Nunito', sans-serif
   color: $hg_light
+  position: absolute
+  right: 1em
+  
+  border-radius: 7px
   padding:  0 .5em .15em
   transition: .3s
   
@@ -61,7 +69,6 @@ a
     color: $hg_main
     text-decoration: none
     background: transparentize( $bg_main, .5)
-    border-radius: 7px
     
 p 
   margin-bottom: 0
@@ -82,12 +89,14 @@ p
 .form-control
   max-width: 60%
   border: none
+  background: inherit
 
   &:focus
     box-shadow: none
+    background: inherit
 
 .form-group
-  color: #000
+  color: #495057
   background: $bg_light
   border-radius: $border_radius
 
@@ -99,30 +108,36 @@ p
   transition: .3s
 
 .list-form
-  font-size: .95rem
+  color: #495057
+  font-size: .9rem
   padding: .75em 1em
   border-radius: 15px
-  background: transparentize( $bg_main, .5)
+  background: transparentize( $bg_main, .2)
 
-  width: 35%
+  width: 32%
   display: flex
-  justify-content: space-around
   align-items: center
+  position: relative
   transition: .3s
+
+  & > .list-form-item-name 
+    margin: auto
 
   &:hover,
   &:focus 
     cursor: pointer 
-    background: lighten($hg_light, 60%)
+    background: darken($bg_main, 4%)
 
 .list
   background: $bg_light
   border-radius: $border_radius
 
   position: absolute
-  right: 2.5em
+  right: 2.1em
   top: -125px
-  // display: none
+  
+  opacity: 0
+  transition: .3s
 
 .list-item
   font-size: .95rem
@@ -144,7 +159,6 @@ p
     border-bottom-left-radius: 20px
     border-bottom-right-radius: 20px
 
-
 .list-name
   margin-left: 2em
 
@@ -154,17 +168,21 @@ p
   border: 2px solid $hg_light
   border-radius: 3px
 
-.rectangle-work
-  border-color: $hg_work
+@each $category, $color in $categories
+  .rectangle-#{$category}
+    border-color: $color
 
-.rectangle-personal
-  border-color: $hg_personal
+  .rectangle-#{$category}-fill
+    background-color: $color
+    border-color: $color
 
-.rectangle-important
-  border-color: $hg_important
+  .blink-#{$category}-an
+    animation: .5s blink-#{$category}-an
 
 .arrow
   stroke: #000 !important
+  // position: absolute
+  // right: 1em
 
 .btn 
   background: $hg_main
@@ -189,20 +207,25 @@ p
   .form-inline
     width: 100% !important
 
+@media (max-width: 460px)
+  .list-form,
+  .form-control,
+  .list-item,
+  li
+    font-size: .7rem
+
 .fade-out-an
   animation: .5s fadeOut
 
-.blink-an
-  animation: .5s blink
-
-@keyframes blink
-  0%
-    background: $bg_light
-  50%
-    background: $hg_main
-  100%
-    background: $bg_light
-
+@each $category, $color in $categories
+  @keyframes blink-#{$category}-an
+    0%
+      background: $bg_light
+    50%
+      background: $color
+    100%
+      background: $bg_light
+      
 @keyframes fadeOut 
   from
     opacity: 1
