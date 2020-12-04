@@ -1,0 +1,129 @@
+.form-inline
+  width: 100vw
+  max-width: 500px
+  margin: auto
+  padding: 16px
+  
+  position: fixed
+  bottom: 0
+  left: 50%
+  transform: translateX(-50%)
+  
+  z-index: 10
+
+.form-group
+  color: #495057
+  background: $bg_light
+  border-radius: $border_radius
+
+  display: flex
+  justify-content: space-between
+  
+  width: 100%
+  padding: .4em 1em
+  transition: .3s
+
+input[name=todo]
+  max-width: 60%
+  border: none
+  background: inherit
+
+  &:focus
+    box-shadow: none
+    background: inherit
+
+.categories-select-menu
+  color: #495057
+  font-size: .9rem
+  padding: .75em 1em
+  border-radius: 15px
+  background: transparentize( $bg_main, .2)
+
+  width: 32%
+  display: flex
+  align-items: center
+  position: relative
+  transition: .3s
+
+  & > .menu-item-name 
+    margin: auto
+
+  &:hover,
+  &:focus 
+    cursor: pointer 
+    background: darken($bg_main, 4%)
+
+.categories-list
+  background: $bg_light
+  border-radius: $border_radius
+
+  position: absolute
+  right: 2.1em
+  top: -125px
+  
+  display: none
+  transition: .3s
+
+.list-item
+  font-size: .95rem
+  color: #495057
+  display: flex
+  align-items: center
+  padding: .25em 1em 
+
+  &:hover
+    background: transparentize( $bg_main, .5)
+    cursor: pointer
+
+  &:first-of-type
+    padding-top: .5em 
+    border-top-left-radius: 20px
+    border-top-right-radius: 20px
+
+  &:last-of-type
+    padding-bottom: .5em
+    border-bottom-left-radius: 20px
+    border-bottom-right-radius: 20px
+
+.list-name
+  margin-left: 2em
+
+.rectangle 
+  width: 10px
+  height: 10px
+  border: 2px solid $hg_light
+  border-radius: 3px
+
+.rectangle-large
+  width: 12px
+  height: 12px
+  border-radius: 4px
+  border-width: 3px
+
+.arrow
+  stroke: #000 !important
+  
+@each $category, $color in $categories
+  .rectangle-#{$category}
+    border-color: $color
+
+  .rectangle-#{$category}-fill
+    background-color: $color
+    border-color: $color
+
+@media (min-width: 576px) 
+  .form-control,
+  .form-inline
+    width: 100% !important
+
+@media (max-width: 460px)
+  .categories-select-menu,
+  .form-control,
+  .list-item,
+  li
+    font-size: .7rem
+
+  li,
+  .categories-select-menu
+    border-radius: $border_radius_small
+

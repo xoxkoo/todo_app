@@ -1,0 +1,23 @@
+
+.fade-out-an
+  animation: .5s fadeOut
+
+@each $category, $color in $categories
+  .blink-#{$category}-an
+    animation: .5s blink-#{$category}
+  
+  @keyframes blink-#{$category}
+    0%
+      background: $bg_light
+    50%
+      background: $color
+    100%
+      background: $bg_light
+      
+@keyframes fadeOut 
+  from
+    opacity: 1
+  to 
+    opacity: 0 
+    display: none
+ 

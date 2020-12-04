@@ -11,40 +11,54 @@
 <body>   
 	<div class="app">
 
-		<ul></ul>
+		<ul class="tasks"></ul>
 		
 		<form class="add-new form-inline">
+
 			<div class="form-group">
-				<input type="text" name="todo" autofocus class="form-control form-item" placeholder="Write your tasks here">
-				<div class="list-form form-item">
-					<div class="rectangle list-form-item"></div>
-					<div class="list-form-item list-form-item-name">No list</div>
-					<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewbox="0 0 67.899 38.899" class="arrow list-form-item">
+
+				<input class="form-control" type="text" name="todo" autofocus placeholder="Write your tasks here">
+
+				<div class="categories-select-menu">
+
+					<div class="rectangle"></div>
+
+					<div class="menu-item-name">No list</div>
+
+					<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewbox="0 0 67.899 38.899">
 						<g transform="translate(1517.45 5547.45)">
-							<line id="Line_35" data-name="Line 35" x2="29" y2="29" transform="translate(-1512.5 -5542.5)" fill="none" stroke-linecap="round" stroke-width="7"/>
-							<line id="Line_36" data-name="Line 36" y1="29" x2="29" transform="translate(-1483.5 -5542.5)" fill="none" stroke-linecap="round" stroke-width="7"/>
+							<line x2="29" y2="29" transform="translate(-1512.5 -5542.5)" fill="none" stroke-linecap="round" stroke-width="7"/>
+							<line y1="29" x2="29" transform="translate(-1483.5 -5542.5)" fill="none" stroke-linecap="round" stroke-width="7"/>
 						</g>
 					</svg>
+
 				</div>
+
 			</div>
-			<div class="list">
+
+			<div class="categories-list">
 				<div class="list-item">
 					<div class="rectangle rectangle-work"></div>
 					<div class="list-name">Work</div>
 				</div>
+
 				<div class="list-item">
 					<div class="rectangle rectangle-personal"></div>
 					<div class="list-name">Personal</div>
 				</div>
+
 				<div class="list-item">
 					<div class="rectangle rectangle-important"></div>
 					<div class="list-name">Important</div>
 				</div>
+
 				<div class="list-item">
 					<div class="rectangle"></div>
 					<div class="list-name">No list</div>
 				</div>
+
 			</div>
+
 		</form>
 		
 	</div>

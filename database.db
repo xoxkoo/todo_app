@@ -1,7 +1,3 @@
-{"_id":1,"body":"pls","category":"important","timestamp":1606999353130}
-{"_id":3,"body":"asdasdsadas","category":"work","timestamp":1607002073125}
-{"_id":4,"body":"hello","category":"important","timestamp":1607005975462}
-{"$$deleted":true,"_id":3}
-{"_id":5,"body":"come here please","category":"important","timestamp":1607006066817}
-{"_id":6,"body":"very well","category":"work","timestamp":1607006073289}
-{"$$deleted":true,"_id":1}
+{"_id":1,"body":"very well","category":"important","timestamp":1607066655996}
+{"_id":2,"body":"its done then","category":"work","timestamp":1607066669028}
+{"_id":3,"body":"gooood","category":"important","timestamp":1607067022578}

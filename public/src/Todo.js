@@ -15,37 +15,58 @@ export default class Todo {
   addNew() {
     this.getCategory()
 
-    if ( this.createNewNode() ) {
+    if ( this.appendNode() ) {
       this.input.parentElement.parentElement.reset()
       this.sendData()
+      
+      return 1
     } 
 
   }
 
-  createNewHtml() {
-    return `
-      <li data-index="${this.id}">
-        <div class="rectangle rectangle-${this.category}"></div>
-        <p>${this.text}</p> 
-        <a href="#">x</a>
-      </li>
-    `.trim()
+  createNewNode() {
+
+    const li        = document.createElement('li'),
+        rectangle = document.createElement('div'),
+        text      = document.createElement('p'),
+        cross     = document.createElement('a')
+
+    li.dataset.index = this.id
+    rectangle.classList.add('rectangle', 'rectangle-large', `rectangle-${this.category}`)
+    text.textContent = this.text
+    cross.textContent = 'x'
+
+    li.appendChild(rectangle)
+    li.appendChild(text)
+    li.appendChild(cross)
+
+    return li
+
+    // `
+    //   <li data-index="${this.id}">
+    //     <div class="rectangle rectangle-${this.category}"></div>
+    //     <p>${this.text}</p> 
+    //     <a href="#">x</a>
+    //   </li>
+    // `.trim()
+
   }
 
-  createNewNode() {
+  appendNode() {
     this.id = this.getNewIndex()
     this.text = this.input.value
 
     if (this.validate()) {
-      this.list.innerHTML += this.createNewHtml()
+      // this.list.innerHTML += this.createNewNode()
+      this.list.insertBefore(this.createNewNode(), this.list.childNodes[0]) 
+      console.log(this.createNewNode())
       return true
     }
 
   }
 
   getLastIndex() {
-    const lastEl = document.querySelector('li:last-child')
-    console.log(lastEl)
+    const lastEl = document.querySelector('li:first-child')
     
     return (lastEl) ? +lastEl.dataset.index : 0
   }
@@ -55,7 +76,7 @@ export default class Todo {
   }
 
   getCategory() {
-    let category = this.categoryElement.querySelector('.list-form-item-name').textContent
+    let category = this.categoryElement.querySelector('.menu-item-name').textContent
 
     // remove spaces + lower case
     category = category.split('').filter(e => e.trim().length).join('').toLowerCase()
@@ -81,13 +102,14 @@ export default class Todo {
     // this.list.innerHTML = localStorage.getItem('elements')
     const response = await( await fetch('/get')).json()
     
-
     for (const item of response) {
       this.id = item._id
       this.text = item.body
       this.category = item.category
 
-      this.list.innerHTML += this.createNewHtml()
+      // this.list.innerHTML += this.createNewNode()
+      this.list.insertBefore(this.createNewNode(), this.list.childNodes[0])
+      // this.appendNode()
     }
   }
 
